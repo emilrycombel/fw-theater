@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Import
 import org.springframework.orm.jpa.JpaTransactionManager
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
+import org.springframework.transaction.PlatformTransactionManager
+import pl.er.code.fwtheater.infrastructure.transaction.TransactionWrapper
 import java.util.*
 import javax.sql.DataSource
 
@@ -59,5 +61,10 @@ class HibernateConfiguration {
         return HibernatePropertiesCustomizer { properties ->
             properties[AvailableSettings.JSON_FORMAT_MAPPER] = JacksonJsonFormatMapper(objectMapper)
         }
+    }
+
+    @Bean
+    fun transactionWrapper(transactionManager: PlatformTransactionManager): TransactionWrapper {
+        return TransactionWrapper(transactionManager)
     }
 }

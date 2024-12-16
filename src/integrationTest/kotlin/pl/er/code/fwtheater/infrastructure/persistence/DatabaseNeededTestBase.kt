@@ -11,13 +11,13 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.testcontainers.containers.PostgreSQLContainer
 import pl.er.code.fwtheater.infrastructure.config.persistence.AvailableProfiles
-import pl.er.code.fwtheater.infrastructure.config.persistence.BasePersistenceConfiguration
+import pl.er.code.fwtheater.infrastructure.config.persistence.RepositoryConfiguration
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
 @DisplayNameGeneration(ReplaceUnderscores::class)
 @ActiveProfiles(AvailableProfiles.WITH_TEST_CONTAINER_DB)
-@Import(BasePersistenceConfiguration::class)
+@Import(RepositoryConfiguration::class)
 @ContextConfiguration
 abstract class DatabaseNeededTestBase {
 
