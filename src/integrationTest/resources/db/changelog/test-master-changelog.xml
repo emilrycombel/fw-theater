@@ -107,7 +107,7 @@
         </preConditions>
         <sql splitStatements="false">
             insert into public.ff_theaters(ff_theater_id, name)
-            values ('01HYYC1D19ABCDEF1234567890', 'OMDb')
+            values ('01HYYC1D19ABCDEF1234567890', 'Fast and Furious Cinema')
         </sql>
     </changeSet>
 
