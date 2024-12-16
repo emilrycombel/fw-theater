@@ -4,10 +4,12 @@ import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 import pl.er.code.fwtheater.adapter.outbound.persistence.annotation.ULIDId
+import pl.er.code.fwtheater.domain.model.Movie
+import pl.er.code.fwtheater.domain.model.Rating
 
 @Entity
 @Table(name = "ff_ratings")
-open class RatingHEntity : BaseEntity<String>() {
+open class RatingHEntity : BaseEntity<String>(), Rating {
     @Id
     @Size(max = 26)
     @ULIDId
@@ -16,18 +18,22 @@ open class RatingHEntity : BaseEntity<String>() {
 
     @NotNull
     @Column(name = "rating", nullable = false)
-    open var rating: Short? = null
+    override var rating: Short? = null
 
     @Column(name = "comment", length = Integer.MAX_VALUE)
-    open var comment: String? = null
+    override var comment: String? = null
 
     @Size(max = 100)
     @NotNull
     @Column(name = "rating_user", nullable = false, length = 100)
-    open var ratingUser: String? = null
+    override var ratingUser: String? = null
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = MovieHEntity::class)
     @JoinColumn(name = "ff_movied_id", nullable = false)
-    open var movie: MovieHEntity? = null
+    override var movie: Movie? = null
+
+    override fun getEntityId(): String? {
+        return id
+    }
 }

@@ -7,10 +7,11 @@ import jakarta.persistence.Table
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 import pl.er.code.fwtheater.adapter.outbound.persistence.annotation.ULIDId
+import pl.er.code.fwtheater.domain.model.Movie
 
 @Entity
 @Table(name = "ff_movies")
-open class MovieHEntity : BaseEntity<String>() {
+open class MovieHEntity : BaseEntity<String>(), Movie {
     @Id
     @Size(max = 26)
     @ULIDId
@@ -20,5 +21,10 @@ open class MovieHEntity : BaseEntity<String>() {
     @Size(max = 300)
     @NotNull
     @Column(name = "title", nullable = false, length = 300)
-    open var title: String? = null
+    override var title: String? = null
+
+    override fun getEntityId(): String? {
+        return id
+    }
+
 }

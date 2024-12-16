@@ -4,17 +4,27 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 import pl.er.code.fwtheater.adapter.outbound.persistence.annotation.ULIDId
+import pl.er.code.fwtheater.domain.model.FilmBasePlatform
 
 @Entity
 @Table(name = "ff_fb_platforms")
-open class FilmBasePlatformHEntity : BaseEntity<String>() {
+open class FilmBasePlatformHEntity : BaseEntity<String>(), FilmBasePlatform {
     @Id
     @Size(max = 26)
     @ULIDId
     @Column(name = "ff_fb_platform_id", nullable = false, length = 26)
     override var id: String? = null
 
-    //TODO [Reverse Engineering] generate columns from DB
+    @Size(max = 250)
+    @NotNull
+    @Column(name = "name", nullable = false, length = 250)
+    override var name: String? = null
+
+    override fun getEntityId(): String? {
+        return id
+    }
+
 }

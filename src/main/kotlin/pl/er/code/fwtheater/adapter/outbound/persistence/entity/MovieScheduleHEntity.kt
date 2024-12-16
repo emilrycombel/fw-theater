@@ -4,11 +4,14 @@ import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 import pl.er.code.fwtheater.adapter.outbound.persistence.annotation.ULIDId
+import pl.er.code.fwtheater.domain.model.Auditorium
+import pl.er.code.fwtheater.domain.model.Movie
+import pl.er.code.fwtheater.domain.model.MovieSchedule
 import java.time.OffsetDateTime
 
 @Entity
 @Table(name = "ff_movie_schedules")
-open class MovieScheduleHEntity : BaseEntity<String>() {
+open class MovieScheduleHEntity : BaseEntity<String>(), MovieSchedule {
     @Id
     @Size(max = 26)
     @ULIDId
@@ -17,15 +20,20 @@ open class MovieScheduleHEntity : BaseEntity<String>() {
 
     @NotNull
     @Column(name = "screen_time", nullable = false)
-    open var screenTime: OffsetDateTime? = null
+    override var screenTime: OffsetDateTime? = null
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = MovieHEntity::class)
     @JoinColumn(name = "ff_movie_id", nullable = false)
-    open var movie: pl.er.code.fwtheater.adapter.outbound.persistence.entity.MovieHEntity? = null
+    override var movie: Movie? = null
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = AuditoriumHEntity::class)
     @JoinColumn(name = "ff_auditorium_id", nullable = false)
-    open var auditorium: AuditoriumHEntity? = null
+    override var auditorium: Auditorium? = null
+
+    override fun getEntityId(): String? {
+        return id
+    }
+
 }

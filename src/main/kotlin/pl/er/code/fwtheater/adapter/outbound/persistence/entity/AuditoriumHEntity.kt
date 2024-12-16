@@ -4,10 +4,12 @@ import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 import pl.er.code.fwtheater.adapter.outbound.persistence.annotation.ULIDId
+import pl.er.code.fwtheater.domain.model.Auditorium
+import pl.er.code.fwtheater.domain.model.Theater
 
 @Entity
 @Table(name = "ff_auditoriums")
-open class AuditoriumHEntity : BaseEntity<String>() {
+open class AuditoriumHEntity : BaseEntity<String>(), Auditorium {
     @Id
     @Size(max = 26)
     @ULIDId
@@ -16,15 +18,19 @@ open class AuditoriumHEntity : BaseEntity<String>() {
 
     @NotNull
     @Column(name = "capacity", nullable = false)
-    open var capacity: Short? = null
+    override var capacity: Short? = null
 
     @Size(max = 250)
     @NotNull
     @Column(name = "name", nullable = false, length = 250)
-    open var name: String? = null
+    override var name: String? = null
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = TheaterHEntity::class)
     @JoinColumn(name = "ff_theater_id", nullable = false)
-    open var theater: pl.er.code.fwtheater.adapter.outbound.persistence.entity.TheaterHEntity? = null
+    override var theater: Theater? = null
+
+    override fun getEntityId(): String? {
+        return id
+    }
 }
