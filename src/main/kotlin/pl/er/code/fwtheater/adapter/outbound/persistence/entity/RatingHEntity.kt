@@ -3,12 +3,14 @@ package pl.er.code.fwtheater.adapter.outbound.persistence.entity
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
+import pl.er.code.fwtheater.adapter.outbound.persistence.annotation.ULIDId
 
 @Entity
 @Table(name = "ff_ratings")
 open class RatingHEntity : BaseEntity<String>() {
     @Id
     @Size(max = 26)
+    @ULIDId
     @Column(name = "ff_rating_id", nullable = false, length = 26)
     override var id: String? = null
 

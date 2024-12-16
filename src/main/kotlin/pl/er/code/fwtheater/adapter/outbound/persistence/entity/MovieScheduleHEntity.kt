@@ -3,6 +3,7 @@ package pl.er.code.fwtheater.adapter.outbound.persistence.entity
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
+import pl.er.code.fwtheater.adapter.outbound.persistence.annotation.ULIDId
 import java.time.OffsetDateTime
 
 @Entity
@@ -10,6 +11,7 @@ import java.time.OffsetDateTime
 open class MovieScheduleHEntity : BaseEntity<String>() {
     @Id
     @Size(max = 26)
+    @ULIDId
     @Column(name = "ff_movie_schedule_id", nullable = false, length = 26)
     override var id: String? = null
 
