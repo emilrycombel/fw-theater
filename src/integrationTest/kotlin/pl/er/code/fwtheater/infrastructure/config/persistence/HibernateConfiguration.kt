@@ -27,9 +27,7 @@ class HibernateConfiguration {
         val em = LocalContainerEntityManagerFactoryBean()
         em.dataSource = dataSource
         em.setPackagesToScan(
-            "pl.er.code.salesxp.domain.sxp.model",
-            "pl.er.code.salesxp.adapters.persistence.sxp.model",
-            "pl.er.code.salesxp.adapters.persistence.allegro.model"
+            "pl.er.code.fwtheater.adapter.outbound.persistence.entity"
         )
         em.setPersistenceProviderClass(HibernatePersistenceProvider::class.java);
         val vendorAdapter = HibernateJpaVendorAdapter()
