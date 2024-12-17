@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*
 import pl.er.code.fwtheater.application.port.dto.request.AddMovieScheduleRequestBody
 import pl.er.code.fwtheater.application.port.dto.response.MovieScheduleResponse
 import pl.er.code.fwtheater.application.port.dto.response.ResponseEnvelope
+import pl.er.code.fwtheater.domain.model.search.MovieScheduleSearchCriteria
 import pl.er.code.fwtheater.domain.service.MovieScheduleService
 
 @RestController
@@ -14,13 +15,12 @@ class MovieScheduleController(@Autowired private val movieSchedulerService: Movi
 
 
     @GetMapping("/list", produces = arrayOf("application/json"))
-    fun list(): ResponseEntity<ResponseEnvelope<List<MovieScheduleResponse>, String>> {
-        return ResponseEntity.ok(
-            ResponseEnvelope<List<MovieScheduleResponse>, String>(
-                data = emptyList<MovieScheduleResponse>(),
-                status = "success"
-            )
+    fun list(searchCriteria: MovieScheduleSearchCriteria): ResponseEntity<ResponseEnvelope<List<MovieScheduleResponse>, String>> {
+        val response = ResponseEnvelope.fromPage<MovieScheduleResponse, String>(
+            movieSchedulerService.search(searchCriteria) { MovieScheduleResponse.fromDomain(it) }
         )
+
+        return ResponseEntity.ok(response)
     }
 
     @PostMapping("", produces = arrayOf("application/json"), consumes = arrayOf("application/json"))

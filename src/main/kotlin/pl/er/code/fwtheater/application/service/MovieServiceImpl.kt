@@ -6,7 +6,7 @@ import pl.er.code.fwtheater.domain.model.Movie
 import pl.er.code.fwtheater.domain.model.search.MovieSearchCriteria
 import pl.er.code.fwtheater.domain.service.MovieService
 
-class MovieServiceImpl(private val movieRepository: MovieRepository) :
+open class MovieServiceImpl(private val movieRepository: MovieRepository) :
     AbstractRepositoryBasedService<Movie, MovieHEntity, String, MovieSearchCriteria, MovieRepository>(
         movieRepository
     ),

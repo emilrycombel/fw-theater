@@ -8,7 +8,8 @@ data class MovieScheduleResponse(
     val id: String,
     val title: String,
     val showTime: OffsetDateTime,
-    val price: BigDecimal
+    val price: BigDecimal,
+    val auditorium: String
 ) {
     companion object {
         fun fromDomain(movieSchedule: MovieSchedule): MovieScheduleResponse {
@@ -16,7 +17,8 @@ data class MovieScheduleResponse(
                 id = movieSchedule.id!!,
                 title = movieSchedule.movie?.title!!,
                 showTime = movieSchedule.screenTime!!,
-                price = movieSchedule.price
+                price = movieSchedule.price,
+                auditorium = movieSchedule.auditorium?.name!!
             )
         }
     }

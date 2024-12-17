@@ -6,7 +6,7 @@ import pl.er.code.fwtheater.domain.model.Auditorium
 import pl.er.code.fwtheater.domain.model.search.PageSearchCriteria
 import pl.er.code.fwtheater.domain.service.AuditoriumService
 
-class AuditoriumServiceImpl(private val auditoriumRepository: AuditoriumRepository) :
+open class AuditoriumServiceImpl(private val auditoriumRepository: AuditoriumRepository) :
     AbstractRepositoryBasedService<Auditorium, AuditoriumHEntity, String, PageSearchCriteria, AuditoriumRepository>(
         auditoriumRepository
     ),
