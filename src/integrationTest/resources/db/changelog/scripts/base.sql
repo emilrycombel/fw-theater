@@ -34,12 +34,12 @@ CREATE TABLE IF NOT EXISTS public.ff_fb_platform_movies
 CREATE TABLE IF NOT EXISTS public.ff_fb_platforms
 (
     ff_fb_platform_id      character(26) COLLATE pg_catalog."default" NOT NULL,
-    name                   varchar(250)                               not null,
-    created_timestamp      timestamp with time zone DEFAULT now(),
-    last_updated_timestamp timestamp with time zone DEFAULT now(),
-    version_number         integer                  DEFAULT 0,
+    created_timestamp      timestamp with time zone                            DEFAULT now(),
+    last_updated_timestamp timestamp with time zone                            DEFAULT now(),
+    version_number         integer                                             DEFAULT 0,
     created_by             character(26) COLLATE pg_catalog."default",
     last_updated_by        character(26) COLLATE pg_catalog."default",
+    code                   character varying(150) COLLATE pg_catalog."default" DEFAULT 'OMDB'::character varying,
     CONSTRAINT ff_fb_platforms_pkey PRIMARY KEY (ff_fb_platform_id)
 );
 
@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS public.ff_movie_schedules
     version_number         integer                  DEFAULT 0,
     created_by             character(26) COLLATE pg_catalog."default",
     last_updated_by        character(26) COLLATE pg_catalog."default",
+    price                  numeric(10, 2)           DEFAULT 0,
     CONSTRAINT ff_movie_schedules_pkey PRIMARY KEY (ff_movie_schedule_id)
 );
 

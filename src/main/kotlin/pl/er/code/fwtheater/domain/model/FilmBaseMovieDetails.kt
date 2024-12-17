@@ -6,5 +6,6 @@ data class FilmBaseMovieDetails(
     val releaseDate: String,
     val rating: String,
     val imdbRating: String,
-    val runtime: String
+    val runtime: String,
+    val length: Int
 )

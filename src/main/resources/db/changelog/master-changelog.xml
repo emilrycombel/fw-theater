@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="FT2: 20241216-hibernate-integration" author="emil.rycombel@er-code.net">
+        <tagDatabase tag="fw-theater-0.0.1"/>
+    </changeSet>
+
+
+    <changeSet id="FT3: 20241216-prepare-schema-script" author="emil.rycombel@er-code.net">
+        <sqlFile path="/scripts/base.sql"
+                 splitStatements="true"
+                 relativeToChangelogFile="true"
+                 stripComments="true"/>
+    </changeSet>
+
+    <changeSet id="FT4: 20241216-prepare-data-insert-film-base-platforms" author="emil.rycombel@er-code.net">
+        <preConditions>
+            <sqlCheck expectedResult="t"><![CDATA[
+                select count(*) < 1
+                from ff_fb_platforms
+                ]]></sqlCheck>
+        </preConditions>
+        <sql splitStatements="false">
+            insert into public.ff_fb_platforms(ff_fb_platform_id, code)
+            values ('01HYYC1D20ABCDEF1234567890', 'OMDB')
+        </sql>
+    </changeSet>
+
+    <changeSet id="FT4: 20241216-prepare-data-insert-movies" author="emil.rycombel@er-code.net">
+        <preConditions>
+            <sqlCheck expectedResult="t"><![CDATA[
+                select count(*) < 1
+                from ff_movies
+                ]]></sqlCheck>
+        </preConditions>
+        <sql splitStatements="false">
+<![CDATA[
+            INSERT INTO public.ff_movies (ff_movie_id, title)
+            VALUES ('01HYYC1D23ABCDEF1234567890', 'The Fast and the Furious');
+            INSERT INTO public.ff_movies (ff_movie_id, title)
+            VALUES ('01HYYC1D24ABCDEF1234567890', '2 Fast 2 Furious');
+            INSERT INTO public.ff_movies (ff_movie_id, title)
+            VALUES ('01HYYC1D25ABCDEF1234567890', 'The Fast and the Furious: Tokyo Drift');
+            INSERT INTO public.ff_movies (ff_movie_id, title)
+            VALUES ('01HYYC1D26ABCDEF1234567890', 'Fast & Furious');
+            INSERT INTO public.ff_movies (ff_movie_id, title)
+            VALUES ('01HYYC1D27ABCDEF1234567890', 'Fast Five');
+            INSERT INTO public.ff_movies (ff_movie_id, title)
+            VALUES ('01HYYC1D28ABCDEF1234567890', 'Fast & Furious 6');
+            INSERT INTO public.ff_movies (ff_movie_id, title)
+            VALUES ('01HYYC1D29ABCDEF1234567890', 'Furious 7');
+            INSERT INTO public.ff_movies (ff_movie_id, title)
+            VALUES ('01HYYC1D30ABCDEF1234567890', 'The Fate of the Furious');
+            INSERT INTO public.ff_movies (ff_movie_id, title)
+            VALUES ('01HYYC1D31ABCDEF1234567890', 'F9: The Fast Saga');
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="FT4: 20241216-prepare-data-link-movies-to-external-platforms" author="emil.rycombel@er-code.net">
+        <preConditions>
+            <sqlCheck expectedResult="t"><![CDATA[
+                select count(*) < 1
+                from ff_fb_platform_movies
+                ]]></sqlCheck>
+        </preConditions>
+        <sql splitStatements="false">
+            INSERT INTO public.ff_fb_platform_movies (ff_movie_id, ff_fb_platform_id, movie_id, ff_fb_platform_movie_id)
+            VALUES ('01HYYC1D23ABCDEF1234567890', '01HYYC1D20ABCDEF1234567890', 'tt0232500',
+                    '01HYYC1D40ABCDEF1234567890');
+            INSERT INTO public.ff_fb_platform_movies (ff_movie_id, ff_fb_platform_id, movie_id, ff_fb_platform_movie_id)
+            VALUES ('01HYYC1D24ABCDEF1234567890', '01HYYC1D20ABCDEF1234567890', 'tt0322259',
+                    '01HYYC1D41ABCDEF1234567890');
+            INSERT INTO public.ff_fb_platform_movies (ff_movie_id, ff_fb_platform_id, movie_id, ff_fb_platform_movie_id)
+            VALUES ('01HYYC1D25ABCDEF1234567890', '01HYYC1D20ABCDEF1234567890', 'tt0463985',
+                    '01HYYC1D42ABCDEF1234567890');
+            INSERT INTO public.ff_fb_platform_movies (ff_movie_id, ff_fb_platform_id, movie_id, ff_fb_platform_movie_id)
+            VALUES ('01HYYC1D26ABCDEF1234567890', '01HYYC1D20ABCDEF1234567890', 'tt1013752',
+                    '01HYYC1D43ABCDEF1234567890');
+            INSERT INTO public.ff_fb_platform_movies (ff_movie_id, ff_fb_platform_id, movie_id, ff_fb_platform_movie_id)
+            VALUES ('01HYYC1D27ABCDEF1234567890', '01HYYC1D20ABCDEF1234567890', 'tt1596343',
+                    '01HYYC1D44ABCDEF1234567890');
+            INSERT INTO public.ff_fb_platform_movies (ff_movie_id, ff_fb_platform_id, movie_id, ff_fb_platform_movie_id)
+            VALUES ('01HYYC1D28ABCDEF1234567890', '01HYYC1D20ABCDEF1234567890', 'tt1905041',
+                    '01HYYC1D45ABCDEF1234567890');
+            INSERT INTO public.ff_fb_platform_movies (ff_movie_id, ff_fb_platform_id, movie_id, ff_fb_platform_movie_id)
+            VALUES ('01HYYC1D29ABCDEF1234567890', '01HYYC1D20ABCDEF1234567890', 'tt2820852',
+                    '01HYYC1D46ABCDEF1234567890');
+            INSERT INTO public.ff_fb_platform_movies (ff_movie_id, ff_fb_platform_id, movie_id, ff_fb_platform_movie_id)
+            VALUES ('01HYYC1D30ABCDEF1234567890', '01HYYC1D20ABCDEF1234567890', 'tt4630562',
+                    '01HYYC1D47ABCDEF1234567890');
+            INSERT INTO public.ff_fb_platform_movies (ff_movie_id, ff_fb_platform_id, movie_id, ff_fb_platform_movie_id)
+            VALUES ('01HYYC1D31ABCDEF1234567890', '01HYYC1D20ABCDEF1234567890', 'tt5433138',
+                    '01HYYC1D48ABCDEF1234567890');
+        </sql>
+    </changeSet>
+
+    <changeSet id="FT4: 20241216-prepare-data-insert-theaters" author="emil.rycombel@er-code.net">
+        <preConditions>
+            <sqlCheck expectedResult="t"><![CDATA[
+                select count(*) < 1
+                from ff_theaters
+                ]]></sqlCheck>
+        </preConditions>
+        <sql splitStatements="false">
+            insert into public.ff_theaters(ff_theater_id, name)
+            values ('01HYYC1D19ABCDEF1234567890', 'Fast and Furious Cinema')
+        </sql>
+    </changeSet>
+
+    <changeSet id="FT4: 20241216-prepare-data-insert-auditorium" author="emil.rycombel@er-code.net">
+        <preConditions>
+            <sqlCheck expectedResult="t"><![CDATA[
+                select count(*) < 1
+                from ff_auditoriums
+                ]]></sqlCheck>
+        </preConditions>
+        <sql splitStatements="false">
+            insert into public.ff_auditoriums(ff_auditorium, name, capacity, ff_theater_id)
+            values ('01HYYC1D18ABCDEF1234567890', 'Fourtwall Hall', 250, '01HYYC1D19ABCDEF1234567890')
+        </sql>
+    </changeSet>
+</databaseChangeLog>

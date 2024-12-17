@@ -11,6 +11,7 @@ fun OmdbMovieDetailsResponse.toDomain(): FilmBaseMovieDetails {
         releaseDate = released,
         rating = rated,
         imdbRating = imdbRating,
-        runtime = runtime
+        runtime = runtime,
+        length = runtime.split(" ").firstOrNull()?.toIntOrNull() ?: 0
     )
 }

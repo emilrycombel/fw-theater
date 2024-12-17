@@ -48,7 +48,8 @@ open class OmdbRestClient(
             releaseDate = "N/A",
             rating = "N/A",
             imdbRating = "N/A",
-            runtime = "N/A"
+            runtime = "N/A",
+            length = 0
         )
     }
 }
