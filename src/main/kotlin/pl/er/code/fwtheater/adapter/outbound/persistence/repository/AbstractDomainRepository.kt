@@ -3,13 +3,17 @@ package pl.er.code.fwtheater.adapter.outbound.persistence.repository
 import jakarta.persistence.EntityManager
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository
 import org.springframework.transaction.annotation.Transactional
+import pl.er.code.fwtheater.application.port.outbound.BaseDomainRepository
+import pl.er.code.fwtheater.domain.model.DomainInstance
+import pl.er.code.fwtheater.domain.model.Page
+import pl.er.code.fwtheater.domain.model.search.PageSearchCriteria
 import java.io.Serializable
 
 @Transactional(readOnly = true)
-abstract class AbstractDomainRepository<D, E : D, ID : Serializable>(
+abstract class AbstractDomainRepository<D : DomainInstance<ID>, E : D, ID : Serializable, S : PageSearchCriteria>(
     val jpaEntityClass: Class<E>,
     protected var entityManager: EntityManager
-) {
+) : BaseDomainRepository<D, ID, S> {
 
     private lateinit var delegate: SimpleJpaRepository<E, ID>
 
@@ -17,37 +21,40 @@ abstract class AbstractDomainRepository<D, E : D, ID : Serializable>(
         delegate = SimpleJpaRepository(jpaEntityClass, entityManager)
     }
 
-    fun findById(id: ID): D? {
+    override fun findById(id: ID): D? {
         return delegate.findById(id).orElse(null)
     }
 
-    fun save(instance: D): D {
+    override fun save(instance: D): D {
         return jpaEntityClass.cast(delegate.save(jpaEntityClass.cast(instance)!!))
     }
 
-    fun saveAndFlush(instance: D): D {
+    override fun saveAndFlush(instance: D): D {
         return jpaEntityClass.cast(delegate.saveAndFlush(jpaEntityClass.cast(instance)!!))
     }
 
-    fun deleteById(id: ID) {
+    override fun deleteById(id: ID) {
         delegate.deleteById(id)
     }
 
-    fun delete(instance: D) {
+    override fun delete(instance: D) {
         delegate.delete(jpaEntityClass.cast(instance)!!)
     }
 
-    fun flush() {
+    override fun flush() {
         entityManager.flush()
     }
 
-    fun cleanUp() {
+    override fun cleanUp() {
         flush()
         entityManager.clear()
     }
 
-    fun newInstance(): D {
+    override fun newInstance(): D {
         return jpaEntityClass.getDeclaredConstructor().newInstance()
     }
 
+    override fun search(searchRequest: S): Page<D> {
+        throw UnsupportedOperationException("Not implemented")
+    }
 }
