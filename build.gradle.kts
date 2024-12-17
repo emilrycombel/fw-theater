@@ -111,6 +111,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-aop") // For aspects
     implementation("io.github.resilience4j:resilience4j-spring-boot2:2.1.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
 
     testAnnotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
