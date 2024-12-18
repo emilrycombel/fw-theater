@@ -74,53 +74,47 @@ tasks.named<Copy>("processTestResources") {
 tasks["check"].dependsOn(tasks["integrationTest"])
 
 dependencies {
+    // annotation processors
+    annotationProcessor("org.hibernate:hibernate-jpamodelgen:6.4.1.Final")
+    // spring
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-logging")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework:spring-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    // kotlin jetbrains
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    // security
     implementation("io.jsonwebtoken:jjwt-api:0.11.2")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.2")
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-
-    annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
-    annotationProcessor("org.hibernate:hibernate-jpamodelgen:6.4.1.Final")
-
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework:spring-web")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("com.fasterxml.jackson.core:jackson-databind")
-    implementation("com.alibaba.fastjson2:fastjson2:2.0.47")
-    implementation("org.mapstruct:mapstruct:${mapstructVersion}")
-    implementation("de.siegmar:fastcsv:3.1.0")
-
     //persistence
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.hibernate:hibernate-envers:6.4.1.Final")
     implementation("org.postgresql:postgresql")
     implementation("com.zaxxer:HikariCP:4.0.3") // Optional as spring-boot-starter-data-jpa already provides it, but you can add if you want a specific version or just for clarity.
     implementation("org.liquibase:liquibase-core:4.24.0")
 
+    implementation("com.fasterxml.jackson.core:jackson-databind")
+
     implementation("com.github.f4b6a3:ulid-creator:${ulidCreatorVersion}")
-    implementation("org.mapstruct:mapstruct:${mapstructVersion}")
     implementation("org.apache.httpcomponents.client5:httpclient5:5.4")
     implementation("commons-net:commons-net:3.8.0")
     implementation("io.micrometer:micrometer-registry-prometheus")
 
     implementation("net.datafaker:datafaker:2.4.2")
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter-aop") // For aspects
     implementation("io.github.resilience4j:resilience4j-spring-boot2:2.1.0")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
     implementation("com.modernmt.text:profanity-filter:1.0.1")
 
+    // testing
     testAnnotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     "integrationTestImplementation"("org.testcontainers:testcontainers:${testContainerVersion}")
@@ -129,6 +123,9 @@ dependencies {
     "integrationTestImplementation"("org.testcontainers:rabbitmq:1.20.0")
     "integrationTestImplementation"("io.specto:hoverfly-java:0.19.1")
     "integrationTestImplementation"("io.specto:hoverfly-java-junit5:0.19.1")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 kotlin {
