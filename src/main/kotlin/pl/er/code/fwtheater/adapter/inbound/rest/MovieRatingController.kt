@@ -1,5 +1,6 @@
 package pl.er.code.fwtheater.adapter.inbound.rest
 
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -10,10 +11,11 @@ import pl.er.code.fwtheater.domain.model.search.MovieRatingSearchCriteria
 import pl.er.code.fwtheater.domain.service.MovieRatingService
 
 @RestController
-@RequestMapping("/movies/rating")
+@RequestMapping("/public/api/v1//movies/rating")
 class MovieRatingController(@Autowired private val movieRatingService: MovieRatingService) {
 
     @GetMapping("/list", produces = arrayOf("application/json"))
+    @Tag(name = "Public API", description = "APIs accessible without JWT")
     fun list(searchCriteria: MovieRatingSearchCriteria): ResponseEntity<ResponseEnvelope<List<MovieRatingResponse>, String>> {
         val response = ResponseEnvelope.fromPage<MovieRatingResponse, String>(
             movieRatingService.search(searchCriteria) { MovieRatingResponse.fromDomain(it) }
@@ -23,6 +25,7 @@ class MovieRatingController(@Autowired private val movieRatingService: MovieRati
     }
 
     @PostMapping("", produces = arrayOf("application/json"), consumes = arrayOf("application/json"))
+    @Tag(name = "Public API", description = "APIs accessible without JWT")
     fun post(@RequestBody addMovieRatingRequestBody: AddMovieRatingRequestBody): ResponseEntity<ResponseEnvelope<MovieRatingResponse, String>> {
         return ResponseEntity.ok(
             ResponseEnvelope<MovieRatingResponse, String>(

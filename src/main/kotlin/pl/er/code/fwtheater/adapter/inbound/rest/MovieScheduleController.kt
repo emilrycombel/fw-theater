@@ -1,5 +1,6 @@
 package pl.er.code.fwtheater.adapter.inbound.rest
 
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -12,11 +13,11 @@ import pl.er.code.fwtheater.domain.model.search.MovieScheduleSearchCriteria
 import pl.er.code.fwtheater.domain.service.MovieScheduleService
 
 @RestController
-@RequestMapping("/movie-schedules")
 class MovieScheduleController(@Autowired private val movieSchedulerService: MovieScheduleService) {
 
 
-    @GetMapping("/list", produces = arrayOf("application/json"))
+    @Tag(name = "Public API", description = "APIs accessible without JWT")
+    @GetMapping("/public/api/v1/movie-schedules/list", produces = arrayOf("application/json"))
     fun list(searchCriteria: MovieScheduleSearchCriteria): ResponseEntity<ResponseEnvelope<List<MovieScheduleResponse>, String>> {
         val response = ResponseEnvelope.fromPage<MovieScheduleResponse, String>(
             movieSchedulerService.search(searchCriteria) { MovieScheduleResponse.fromDomain(it) }
@@ -25,7 +26,8 @@ class MovieScheduleController(@Autowired private val movieSchedulerService: Movi
         return ResponseEntity.ok(response)
     }
 
-    @PostMapping("", produces = arrayOf("application/json"), consumes = arrayOf("application/json"))
+    @Tag(name = "Internal API", description = "APIs requiring JWT authentication")
+    @PostMapping("/api/movie-schedules", produces = arrayOf("application/json"), consumes = arrayOf("application/json"))
     fun post(@RequestBody addMovieScheduleRequestBody: AddMovieScheduleRequestBody): ResponseEntity<ResponseEnvelope<MovieScheduleResponse, String>> {
         return ResponseEntity.ok(
             ResponseEnvelope<MovieScheduleResponse, String>(
@@ -35,7 +37,12 @@ class MovieScheduleController(@Autowired private val movieSchedulerService: Movi
         )
     }
 
-    @PatchMapping("/", produces = arrayOf("application/json"), consumes = arrayOf("application/json"))
+    @PatchMapping(
+        "/api/movie-schedules",
+        produces = arrayOf("application/json"),
+        consumes = arrayOf("application/json")
+    )
+    @Tag(name = "Internal API", description = "APIs requiring JWT authentication")
     fun patch(@RequestBody updateMovieScheduleRequestBody: UpdateMovieScheduleRequestBody): ResponseEntity<ResponseEnvelope<MovieScheduleResponse, String>> {
         return ResponseEntity.ok(
             ResponseEnvelope<MovieScheduleResponse, String>(
@@ -49,7 +56,8 @@ class MovieScheduleController(@Autowired private val movieSchedulerService: Movi
         )
     }
 
-    @DeleteMapping("/{id}", produces = arrayOf("application/json"))
+    @DeleteMapping("/api/movie-schedules/{id}", produces = arrayOf("application/json"))
+    @Tag(name = "Internal API", description = "APIs requiring JWT authentication")
     fun delete(@PathVariable("id") movieScheduleId: String): ResponseEntity<ResponseEnvelope<String, String>> {
         movieSchedulerService.delete(movieScheduleId)
 
