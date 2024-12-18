@@ -3,6 +3,7 @@ package pl.er.code.fwtheater.adapter.outbound.persistence.repository
 import net.datafaker.Faker
 import org.springframework.transaction.annotation.Transactional
 import pl.er.code.fwtheater.domain.model.DomainInstance
+import pl.er.code.fwtheater.domain.model.search.PageSearchCriteria
 import pl.er.code.fwtheater.infrastructure.persistence.DatabaseNeededTestBase
 import java.io.Serializable
 import kotlin.test.Test
@@ -10,10 +11,10 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-abstract class AbstractBaseHRepositoryImplTest<D : DomainInstance<ID>, E : D, ID : Serializable, R : AbstractDomainRepository<D, E, ID>> :
+abstract class AbstractBaseHRepositoryImplTest<D : DomainInstance<ID>, E : D, ID : Serializable, S : PageSearchCriteria, R : AbstractDomainRepository<D, E, ID, S>> :
     DatabaseNeededTestBase() {
     protected val faker: Faker = Faker()
-    abstract protected fun repository(): R
+    protected abstract fun repository(): R
     abstract fun newNonPersistentInstance(): D
     abstract fun updatePersistedInstance(instance: D): D
 

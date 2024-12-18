@@ -1,4 +1,4 @@
-package pl.er.code.fwtheater.infrastructure.config.persistence
+package pl.er.code.fwtheater.infrastructure.config
 
 import liquibase.integration.spring.SpringLiquibase
 import org.springframework.boot.test.context.TestConfiguration

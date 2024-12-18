@@ -8,8 +8,8 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.testcontainers.containers.PostgreSQLContainer
-import pl.er.code.fwtheater.infrastructure.config.persistence.AvailableProfiles
-import pl.er.code.fwtheater.infrastructure.config.persistence.RepositoryConfiguration
+import pl.er.code.fwtheater.infrastructure.config.AvailableProfiles
+import pl.er.code.fwtheater.infrastructure.config.RepositoryConfiguration
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)

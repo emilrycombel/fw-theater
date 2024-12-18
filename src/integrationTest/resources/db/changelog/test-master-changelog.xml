@@ -24,8 +24,8 @@
                 ]]></sqlCheck>
         </preConditions>
         <sql splitStatements="false">
-            insert into public.ff_fb_platforms(ff_fb_platform_id, name)
-            values ('01HYYC1D20ABCDEF1234567890', 'OMDb')
+            insert into public.ff_fb_platforms(ff_fb_platform_id, code)
+            values ('01HYYC1D20ABCDEF1234567890', 'OMDB')
         </sql>
     </changeSet>
 

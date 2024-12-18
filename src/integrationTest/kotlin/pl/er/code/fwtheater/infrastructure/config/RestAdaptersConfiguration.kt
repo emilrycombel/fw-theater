@@ -1,4 +1,4 @@
-package pl.er.code.fwtheater.infrastructure.config.persistence
+package pl.er.code.fwtheater.infrastructure.config
 
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value

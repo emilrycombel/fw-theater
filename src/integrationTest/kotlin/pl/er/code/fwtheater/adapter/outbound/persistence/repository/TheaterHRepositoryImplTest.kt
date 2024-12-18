@@ -7,6 +7,7 @@ import org.junit.jupiter.api.TestMethodOrder
 import org.springframework.beans.factory.annotation.Autowired
 import pl.er.code.fwtheater.adapter.outbound.persistence.entity.TheaterHEntity
 import pl.er.code.fwtheater.domain.model.Theater
+import pl.er.code.fwtheater.domain.model.search.PageSearchCriteria
 import pl.er.code.fwtheater.infrastructure.transaction.TransactionWrapper
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -14,7 +15,7 @@ import kotlin.test.assertNotEquals
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class TheaterHRepositoryImplTest :
-    AbstractBaseHRepositoryImplTest<Theater, TheaterHEntity, String, TheaterHRepositoryImpl>() {
+    AbstractBaseHRepositoryImplTest<Theater, TheaterHEntity, String, PageSearchCriteria, TheaterHRepositoryImpl>() {
 
     @Autowired
     lateinit var repository: TheaterHRepositoryImpl

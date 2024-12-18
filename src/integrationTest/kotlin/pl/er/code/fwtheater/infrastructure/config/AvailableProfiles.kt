@@ -1,4 +1,4 @@
-package pl.er.code.fwtheater.infrastructure.config.persistence
+package pl.er.code.fwtheater.infrastructure.config
 
 object AvailableProfiles {
     const val DEV = "dev"

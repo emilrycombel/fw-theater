@@ -1,4 +1,4 @@
-package pl.er.code.fwtheater.infrastructure.config.persistence
+package pl.er.code.fwtheater.infrastructure.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.cfg.AvailableSettings

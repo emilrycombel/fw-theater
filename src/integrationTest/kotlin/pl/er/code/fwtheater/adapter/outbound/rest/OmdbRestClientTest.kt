@@ -17,8 +17,8 @@ import org.springframework.context.annotation.Import
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import pl.er.code.fwtheater.domain.model.FilmBaseMovieDetails
-import pl.er.code.fwtheater.infrastructure.config.persistence.AvailableProfiles
-import pl.er.code.fwtheater.infrastructure.config.persistence.RestAdaptersConfiguration
+import pl.er.code.fwtheater.infrastructure.config.AvailableProfiles
+import pl.er.code.fwtheater.infrastructure.config.RestAdaptersConfiguration
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -75,7 +75,7 @@ class OmdbRestClientTest {
                         )
                 )
             )
-            
+
             val result = mockedOmdbRestClient.movieDetailsFor("tt0232500")
             assertEquals("N/A", result?.name)
             assertEquals("Service unavailable", result?.description)
