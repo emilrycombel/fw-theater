@@ -6,10 +6,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Import
 import pl.er.code.fwtheater.adapter.outbound.persistence.entity.*
 import pl.er.code.fwtheater.adapter.outbound.persistence.repository.*
-import pl.er.code.fwtheater.application.port.outbound.AuditoriumRepository
-import pl.er.code.fwtheater.application.port.outbound.FilmBaseMovieRepository
-import pl.er.code.fwtheater.application.port.outbound.MovieRepository
-import pl.er.code.fwtheater.application.port.outbound.MovieScheduleRepository
+import pl.er.code.fwtheater.application.port.outbound.*
 
 @Configuration
 @Import(LiquibaseConfiguration::class)
@@ -38,6 +35,11 @@ class RepositoryConfiguration {
     @Bean
     fun filmBaseMovieRepository(entityManager: EntityManager): FilmBaseMovieRepository {
         return FilmBaseMovieHRepositoryImpl(FilmBaseMovieHEntity::class.java, entityManager)
+    }
+
+    @Bean
+    fun movieRatingRepository(entityManager: EntityManager): MovieRatingRepository {
+        return MovieRatingHRepositoryImpl(MovieRatingHEntity::class.java, entityManager)
     }
 
 }

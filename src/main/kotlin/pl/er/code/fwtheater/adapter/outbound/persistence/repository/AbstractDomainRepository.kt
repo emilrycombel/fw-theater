@@ -74,4 +74,8 @@ abstract class AbstractDomainRepository<D : DomainInstance<ID>, E : D, ID : Seri
             totalPages = pageResult.totalPages
         )
     }
+
+    protected fun getDelegate(): SimpleJpaRepository<E, ID> {
+        return delegate
+    }
 }
