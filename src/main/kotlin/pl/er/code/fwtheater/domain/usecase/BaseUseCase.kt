@@ -1,4 +1,4 @@
-package pl.er.code.fwtheater.domain.model.usecase
+package pl.er.code.fwtheater.domain.usecase
 
 import pl.er.code.fwtheater.infrastructure.common.ULIDGenerator
 import pl.er.code.fwtheater.infrastructure.common.extensions.logger

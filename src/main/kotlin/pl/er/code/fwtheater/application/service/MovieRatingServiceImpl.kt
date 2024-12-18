@@ -8,9 +8,9 @@ import pl.er.code.fwtheater.domain.exception.InvalidStateException
 import pl.er.code.fwtheater.domain.model.Movie
 import pl.er.code.fwtheater.domain.model.MovieRating
 import pl.er.code.fwtheater.domain.model.search.MovieRatingSearchCriteria
-import pl.er.code.fwtheater.domain.model.usecase.CreateMovieRatingUseCase
 import pl.er.code.fwtheater.domain.service.MovieRatingService
 import pl.er.code.fwtheater.domain.service.MovieService
+import pl.er.code.fwtheater.domain.usecase.CreateMovieRatingUseCase
 
 open class MovieRatingServiceImpl(
     private val movieRatingRepository: MovieRatingRepository,

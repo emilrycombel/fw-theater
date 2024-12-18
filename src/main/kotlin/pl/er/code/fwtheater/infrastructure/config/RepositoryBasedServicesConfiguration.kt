@@ -8,13 +8,13 @@ import pl.er.code.fwtheater.application.service.AuditoriumServiceImpl
 import pl.er.code.fwtheater.application.service.MovieRatingServiceImpl
 import pl.er.code.fwtheater.application.service.MovieScheduleServiceImpl
 import pl.er.code.fwtheater.application.service.MovieServiceImpl
-import pl.er.code.fwtheater.domain.model.usecase.CreateMovieRatingUseCase
-import pl.er.code.fwtheater.domain.model.usecase.CreateMovieScheduleUseCase
-import pl.er.code.fwtheater.domain.model.usecase.UpdateMovieScheduleUseCase
 import pl.er.code.fwtheater.domain.service.AuditoriumService
 import pl.er.code.fwtheater.domain.service.MovieRatingService
 import pl.er.code.fwtheater.domain.service.MovieScheduleService
 import pl.er.code.fwtheater.domain.service.MovieService
+import pl.er.code.fwtheater.domain.usecase.CreateMovieRatingUseCase
+import pl.er.code.fwtheater.domain.usecase.CreateMovieScheduleUseCase
+import pl.er.code.fwtheater.domain.usecase.UpdateMovieScheduleUseCase
 
 @Configuration
 class RepositoryBasedServicesConfiguration {

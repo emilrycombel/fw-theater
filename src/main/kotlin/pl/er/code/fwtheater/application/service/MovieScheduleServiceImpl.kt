@@ -12,11 +12,11 @@ import pl.er.code.fwtheater.domain.model.Auditorium
 import pl.er.code.fwtheater.domain.model.Movie
 import pl.er.code.fwtheater.domain.model.MovieSchedule
 import pl.er.code.fwtheater.domain.model.search.MovieScheduleSearchCriteria
-import pl.er.code.fwtheater.domain.model.usecase.CreateMovieScheduleUseCase
-import pl.er.code.fwtheater.domain.model.usecase.UpdateMovieScheduleUseCase
 import pl.er.code.fwtheater.domain.service.AuditoriumService
 import pl.er.code.fwtheater.domain.service.MovieScheduleService
 import pl.er.code.fwtheater.domain.service.MovieService
+import pl.er.code.fwtheater.domain.usecase.CreateMovieScheduleUseCase
+import pl.er.code.fwtheater.domain.usecase.UpdateMovieScheduleUseCase
 import java.time.LocalDate
 
 open class MovieScheduleServiceImpl(

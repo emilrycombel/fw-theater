@@ -1,4 +1,4 @@
-package pl.er.code.fwtheater.domain.model.usecase
+package pl.er.code.fwtheater.domain.usecase
 
 import pl.er.code.fwtheater.domain.exception.BusinessRuleException
 import pl.er.code.fwtheater.domain.exception.InvalidStateException

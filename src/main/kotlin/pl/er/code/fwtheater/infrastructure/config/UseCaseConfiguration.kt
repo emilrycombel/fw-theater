@@ -3,10 +3,10 @@ package pl.er.code.fwtheater.infrastructure.config
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import pl.er.code.fwtheater.domain.model.usecase.CreateMovieRatingUseCase
-import pl.er.code.fwtheater.domain.model.usecase.CreateMovieScheduleUseCase
-import pl.er.code.fwtheater.domain.model.usecase.UpdateMovieScheduleUseCase
 import pl.er.code.fwtheater.domain.service.ProfanityService
+import pl.er.code.fwtheater.domain.usecase.CreateMovieRatingUseCase
+import pl.er.code.fwtheater.domain.usecase.CreateMovieScheduleUseCase
+import pl.er.code.fwtheater.domain.usecase.UpdateMovieScheduleUseCase
 
 @Configuration
 class UseCaseConfiguration {
