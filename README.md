@@ -1,5 +1,9 @@
 # FW-Theater: System Design Challenge
 
+
+## Detailed Document
+[Download Confluence PDF Export - describes the architecture, decisions that have been made and potential changes in future](./docs/Solution Document.pdf)
+
 ## Overview
 This repository contains the implementation for Fourtwall's system design challenge. The project demonstrates architecture, coding, and project organization skills, focusing on scalability and delivering the minimum viable product (MVP).
 
@@ -77,6 +81,7 @@ http://localhost:8080/swagger-ui/index.html
 - Improve caching (e.g., OMDb API results).
 - Introduce advanced user management with authentication and SSO.
 - Transition to a distributed architecture as business needs evolve.
+
 
 ## License
 This project is licensed under the Apache-2.0 license. See the LICENSE file for details.
